@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wadifaa - بوابة التوظيف الأولى في المغرب</title>
+    <link rel="stylesheet" href="wadifaa.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>Wadifaa - الوظيفة</h1>
+        <p>بوابتكم نحو عالم الشغل والمستقبل الرقمي</p>
+    </header>
+
+    <section class="search-section container">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="ابحث عن وظيفة (مثلاً: تقني)...">
+            <select id="citySelect">
+                <option value="">كل المدن</option>
+                <option value="tanger">طنجة</option>
+                <option value="casablanca">الدار البيضاء</option>
+                <option value="ait ourir">ait ourir</option>
+            </select>
+            <button class="btn-search">بحث</button>
+        </div>
+    </section>
+
+    <main class="main-content container">
+        <section class="jobs-column">
+            <h2 class="title-bg">أحدث مباريات التوظيف</h2>
+       
+            <div id="dynamic-jobs">
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="news-widget">
+                <h3 class="widget-title">آخر المستجدات</h3>
+                <ul id="news-list">
+                    <li><span class="news-date">15/03</span> توظيف ممرضين وتقنيين</li>
+                    <li><span class="news-date">14/03</span> مباراة توظيف بالجمارك</li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    
+    <script src="wadifaa.js"></script>
+</body>
+</html>
