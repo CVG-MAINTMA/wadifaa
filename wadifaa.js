@@ -46,19 +46,20 @@ const jobsRef = ref(db, 'jobs');
 onValue(jobsRef, (snapshot) => {
     const data = snapshot.val();
     if (data) {
-        // 1. كنجيبو القيم من Object ونحولوهم لـ Array
+        // 1. كنجيبو الداتا
         let jobsArray = Object.values(data);
         
-        // 2. هاد السطر هو "السحر": كيقبل الترتيب باش الجديد يولي هو الأول
+        // 2. كنقلبو الترتيب باش الجديد (اللي لتحت في Firebase) يولي هو الفوقاني
         jobsArray.reverse(); 
-        
+
+        // 3. كنخزنوها في المتغير العام للبحث
         allJobs = jobsArray;
+
+        // 4. كنعرضوها
         renderJobs(allJobs);
     } else {
         renderJobs([]);
     }
-}, (error) => {
-    console.error("خطأ في جلب البيانات:", error);
 });
 
 // 6. نظام البحث (Filter)
