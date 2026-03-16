@@ -13,31 +13,40 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const statusDiv = document.getElementById('status');
 
+// إضافة وظيفة
 document.getElementById('addJobForm').addEventListener('submit', (e) => {
     e.preventDefault();
-
-    // 1. جمع البيانات من الخانات
-    const title = document.getElementById('jobTitle').value;
-    const company = document.getElementById('jobCompany').value;
-    const date = document.getElementById('jobDate').value;
-    const description = document.getElementById('jobDesc').value;
-
-    // 2. إنشاء مكان جديد في الـ Database (ID تلقائي)
-    const jobsListRef = ref(db, 'jobs'); 
-    const newJobRef = push(jobsListRef);
-
-    // 3. إرسال البيانات
+    const newJobRef = push(ref(db, 'jobs'));
     set(newJobRef, {
-        id: newJobRef.key, // كياخد الـ ID اللي تصاوب أوتوماتيكياً
-        title: title,
-        company: company,
-        date: date,
-        description: description
+        id: newJobRef.key,
+        title: document.getElementById('jobTitle').value,
+        company: document.getElementById('jobCompany').value,
+        date: document.getElementById('jobDate').value,
+        description: document.getElementById('jobDesc').value
     }).then(() => {
-        document.getElementById('status').innerText = "✅ تم نشر الوظيفة بنجاح!";
+        statusDiv.innerText = "✅ تمت إضافة الوظيفة!";
         document.getElementById('addJobForm').reset();
-    }).catch((error) => {
-        document.getElementById('status').innerText = "❌ خطأ: " + error.message;
+    });
+});
+
+// إضافة مدينة
+document.getElementById('addCityForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const newCityRef = push(ref(db, 'cities'));
+    set(newCityRef, { name: document.getElementById('cityName').value }).then(() => {
+        statusDiv.innerText = "✅ تمت إضافة المدينة!";
+        document.getElementById('addCityForm').reset();
+    });
+});
+
+// إضافة خبر
+document.getElementById('addNewsForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const newNewsRef = push(ref(db, 'news'));
+    set(newNewsRef, { text: document.getElementById('newsText').value }).then(() => {
+        statusDiv.innerText = "✅ تم نشر الخبر!";
+        document.getElementById('addNewsForm').reset();
     });
 });
