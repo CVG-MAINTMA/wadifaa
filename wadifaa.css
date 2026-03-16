@@ -1,24 +1,13 @@
-body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; }
-.container { max-width: 1000px; margin: auto; padding: 20px; }
+body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; margin: 0; }
+.header { background: #0056b3; color: white; padding: 40px; text-align: center; }
+.container { max-width: 900px; margin: auto; padding: 20px; }
 
-.main-header { background: #0056b3; color: white; text-align: center; padding: 30px; }
+.news-bar { background: #fff3cd; color: #856404; padding: 10px; text-align: center; font-weight: bold; }
 
-#latestNews { 
-    background: #ffeb3b; padding: 15px; text-align: center; 
-    font-weight: bold; border-radius: 8px; margin: 20px auto; 
-    max-width: 900px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-}
+.search-box { display: flex; gap: 10px; margin-bottom: 30px; justify-content: center; }
+input, select, .btn { padding: 12px; border-radius: 6px; border: 1px solid #ccc; }
+.btn { background: #0056b3; color: white; cursor: pointer; }
 
-.search-container { display: flex; gap: 10px; justify-content: center; padding: 20px; }
-input, select { padding: 10px; border-radius: 5px; border: 1px solid #ddd; }
-
-.main-content { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
-.job-card { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-
-.widget-title { border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
-ul { list-style: none; padding: 0; }
-ul li { padding: 10px 0; border-bottom: 1px solid #eee; }
-
-@media (max-width: 768px) {
-    .main-content { grid-template-columns: 1fr; }
-}
+.jobs-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.job-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.job-card h2 { color: #0056b3; margin-top: 0; }
