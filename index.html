@@ -2,42 +2,32 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wadifaa - بوابة التوظيف</title>
+    <title>Wadifaa - بوابتك للتوظيف</title>
     <link rel="stylesheet" href="wadifaa.css">
 </head>
 <body>
 
-    <header class="main-header">
-        <h1>Wadifaa - الوظيفة</h1>
-        <p>بوابتكم نحو عالم الشغل والمستقبل الرقمي</p>
+    <header class="header">
+        <h1>Wadifaa</h1>
+        <p>أفضل فرص الشغل في المغرب</p>
     </header>
 
-    <div id="latestNews">جاري تحميل آخر الأخبار...</div>
+    <div id="news-bar" class="news-bar">
+        <span>📢</span> <span id="latestNews">جاري تحميل الأخبار...</span>
+    </div>
 
-    <section class="search-section container">
-        <div class="search-container">
+    <section class="container">
+        <div class="search-box">
             <input type="text" id="searchInput" placeholder="ابحث عن وظيفة...">
             <select id="citySelect">
                 <option value="">كل المدن</option>
             </select>
-            <button class="btn-search">بحث</button>
+            <button class="btn">بحث</button>
         </div>
+
+        <main id="dynamic-jobs" class="jobs-grid">
+            </main>
     </section>
-
-    <main class="main-content container">
-        <section class="jobs-column">
-            <h2 class="title-bg">أحدث مباريات التوظيف</h2>
-            <div id="dynamic-jobs"></div>
-        </section>
-
-        <aside class="sidebar">
-            <div class="news-widget">
-                <h3 class="widget-title">آخر المستجدات</h3>
-                <ul id="news-list"></ul>
-            </div>
-        </aside>
-    </main>
 
     <script type="module" src="wadifaa.js"></script>
 </body>
