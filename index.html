@@ -2,32 +2,40 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Wadifaa - بوابتك للتوظيف</title>
+    <title>Wadifaa - بوابة التوظيف الأولى</title>
     <link rel="stylesheet" href="wadifaa.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <header class="header">
-        <h1>Wadifaa</h1>
-        <p>أفضل فرص الشغل في المغرب</p>
-    </header>
-
-    <div id="news-bar" class="news-bar">
-        <span>📢</span> <span id="latestNews">جاري تحميل الأخبار...</span>
-    </div>
-
-    <section class="container">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="ابحث عن وظيفة...">
-            <select id="citySelect">
-                <option value="">كل المدن</option>
-            </select>
-            <button class="btn">بحث</button>
+    <nav class="navbar">
+        <div class="logo">Wadifaa <span>MAROC</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="index.html?type=gov">وظائف حكومية</a></li>
+            <li><a href="index.html?type=private">وظائف خاصة</a></li>
+            <li><a href="index.html?type=exams">نماذج مباريات</a></li>
+        </ul>
+        <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:email@example.com"><i class="fas fa-envelope"></i></a>
         </div>
+    </nav>
 
-        <main id="dynamic-jobs" class="jobs-grid">
-            </main>
-    </section>
+    <div class="container">
+        <aside class="sidebar-left">
+            </aside>
+
+        <main class="main-content">
+            <div id="dynamic-jobs" class="jobs-grid"></div>
+        </main>
+
+        <aside class="sidebar-right">
+            <h3>آخر المستجدات</h3>
+            <ul id="news-list"></ul>
+        </aside>
+    </div>
 
     <script type="module" src="wadifaa.js"></script>
 </body>
