@@ -1,51 +1,22 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-// إعدادات Firebase الخاصة بك
-const firebaseConfig = {
-  apiKey: "AIzaSyDEXWQCwJ7JSIVHnjFzj3F9QYdySzh4lfE",
-  authDomain: "waddifa-98a56.firebaseapp.com",
-  databaseURL: "https://waddifa-98a56-default-rtdb.firebaseio.com",
-  projectId: "waddifa-98a56",
-  storageBucket: "waddifa-98a56.firebasestorage.app",
-  messagingSenderId: "528638398956",
-  appId: "1:528638398956:web:a4acac5a84f8901d9970c9"
-};
+// إعدادات Firebase (نفسها اللي فـ index)
+const db = getDatabase(initializeApp({ /* حط Config ديالك هنا */ }));
 
-// تشغيل Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-// 1. جلب الـ ID من الرابط (URL)
 const urlParams = new URLSearchParams(window.location.search);
-const jobId = urlParams.get('id');
+const jobId = urlParams.get('id'); // هنا كنجبدو الـ ID من الرابط
 
 if (jobId) {
-    // 2. البحث عن الوظيفة باستخدام الـ ID في مسار 'jobs'
-    const jobRef = ref(db, 'jobs/' + jobId);
-
-    onValue(jobRef, (snapshot) => {
-        const job = snapshot.val();
-        const loadingDiv = document.getElementById('loading');
-        const contentDiv = document.getElementById('job-content');
-
-        if (job) {
-            // تحديث العناصر بالبيانات الحقيقية
-            document.getElementById('job-title').innerText = job.title || 'بدون عنوان';
-            document.getElementById('job-company').innerText = job.company || 'شركة غير محددة';
-            document.getElementById('job-description').innerText = job.description || 'لا يوجد وصف متاح.';
-            document.getElementById('job-date').innerText = job.date || '';
-
-            // إخفاء التحميل وإظهار المحتوى
-            loadingDiv.style.display = 'none';
-            contentDiv.style.display = 'block';
+    const dbRef = ref(db);
+    get(child(dbRef, `jobs/${jobId}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            const job = snapshot.val();
+            document.getElementById('job-title').innerText = job.title;
+            document.getElementById('job-desc').innerText = job.description;
+            document.getElementById('job-company').innerText = job.company;
         } else {
-            loadingDiv.innerHTML = "<h2>❌ الوظيفة غير موجودة أو تم حذفها.</h2>";
+            document.getElementById('job-title').innerText = "الوظيفة غير موجودة!";
         }
-    }, (error) => {
-        console.error("خطأ في الاتصال:", error);
-        document.getElementById('loading').innerText = "حدث خطأ أثناء تحميل البيانات.";
     });
-} else {
-    document.getElementById('loading').innerText = "خطأ: لم يتم تحديد معرف الوظيفة.";
 }
