@@ -2,44 +2,28 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>لوحة التحكم - إضافة البيانات</title>
+    <title>لوحة التحكم - إضافة وظيفة</title>
     <link rel="stylesheet" href="wadifaa.css">
 </head>
 <body>
-    <div class="container">
-       
+    <div class="container" style="max-width: 600px; margin-top: 50px;">
+        <h2>إضافة وظيفة جديدة</h2>
+        <form id="adminForm">
+            <input type="text" id="title" placeholder="عنوان الوظيفة" required><br>
+            <input type="text" id="company" placeholder="اسم الشركة/الجهة" required><br>
+            <input type="text" id="city" placeholder="المدينة" required><br>
+            
+            <select id="type">
+                <option value="gov">وظائف حكومية</option>
+                <option value="private">وظائف خاصة</option>
+                <option value="exams">نماذج مباريات</option>
+                <option value="news">أخبار متنوعة</option>
+            </select><br>
 
-       
-        <h3>إضافة وظيفة جديدة</h3>
-<form id="addJobForm">
-    <input type="text" id="jobTitle" placeholder="عنوان الوظيفة" required><br>
-    <input type="text" id="jobCompany" placeholder="اسم الشركة" required><br>
-    <input type="text" id="jobCompany" placeholder="اسم الشركة" required><br>
-    <select id="jobType" required>
-        <option value="gov">وظائف حكومية</option>
-        <option value="private">وظائف خاصة</option>
-        <option value="exams">نماذج مباريات</option>
-    </select><br>
-
-    <textarea id="jobDesc" placeholder="تفاصيل الوظيفة"></textarea><br>
-    <button type="submit">نشر الوظيفة</button>
-</form>
-
-        <hr>
-
-        <section>
-            <h3>إضافة خبر جديد</h3>
-            <form id="addNewsForm">
-                <input type="text" id="newsText" placeholder="نص الخبر" required>
-                <button type="submit">نشر الخبر</button>
-            </form>
-        </section>
-
-        <div id="status" style="margin-top: 20px; font-weight: bold;"></div>
-        <br>
-        <a href="index.html">الرجوع للموقع الرئيسي</a>
+            <textarea id="description" placeholder="وصف الوظيفة" required></textarea><br>
+            <button type="submit" class="btn-back">نشر الوظيفة</button>
+        </form>
     </div>
-
     <script type="module" src="admin.js"></script>
 </body>
 </html>
