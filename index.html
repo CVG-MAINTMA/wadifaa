@@ -2,53 +2,47 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Wadifaa - بوابة التوظيف الأولى</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wadifaa MAROC - بوابة التوظيف</title>
     <link rel="stylesheet" href="wadifaa.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 </head>
-    
 <body>
-<header class="main-header">
-    <div class="logo">Wadifaa MAROC</div>
-    <ul class="nav-links">
-        <li><a href="#">الرئيسية</a></li>
-        <li><a href="#">وظائف حكومية</a></li>
-        <li><a href="#">وظائف خاصة</a></li>
-        <li><a href="#">نماذج مباريات</a></li>
-        <li><a href="#">أخبار متنوعة</a></li>
-    </ul>
-    <div class="nav-actions">
-        <div class="icon-btn">🔍</div>
-        <div class="icon-btn">✉️</div>
-        <div class="icon-btn">🌙</div>
-    </div>
-</header>
-    <nav class="navbar">
+
+    <header class="main-header">
         <div class="logo">Wadifaa <span>MAROC</span></div>
-        <ul class="nav-links">
-            <li><a href="index.html">الرئيسية</a></li>
-            <li><a href="index.html?type=gov">وظائف حكومية</a></li>
-            <li><a href="index.html?type=private">وظائف خاصة</a></li>
-            <li><a href="index.html?type=exams">نماذج مباريات</a></li>
-        </ul>
-        <div class="social">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:email@example.com"><i class="fas fa-envelope"></i></a>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="index.html?type=gov">وظائف حكومية</a></li>
+                <li><a href="index.html?type=private">وظائف خاصة</a></li>
+                <li><a href="index.html?type=exams">نماذج مباريات</a></li>
+                <li><a href="index.html?type=news">أخبار متنوعة</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="icon-btn"><i class="fas fa-moon"></i></button>
+            <button class="icon-btn"><i class="fas fa-envelope"></i></button>
+            <button class="icon-btn"><i class="fas fa-search"></i></button>
         </div>
-    </nav>
+    </header>
 
     <div class="container">
-        <aside class="sidebar-left">
-            </aside>
-
         <main class="main-content">
-            <div id="dynamic-jobs" class="jobs-grid"></div>
+            <h2 class="section-title">أحدث مباريات التوظيف</h2>
+            <div id="dynamic-jobs" class="jobs-grid">
+                </div>
         </main>
 
-        <aside class="sidebar-right">
-            <h3>آخر المستجدات</h3>
-            <ul id="news-list"></ul>
+        <aside class="sidebar">
+            <div class="news-widget">
+                <h3 class="news-title">آخر المستجدات</h3>
+                <ul id="news-list">
+                    </ul>
+            </div>
         </aside>
     </div>
 
