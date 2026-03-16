@@ -1,44 +1,19 @@
-/* تنسيق أساسي */
-body { margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f7f6; }
+body {
+    font-family: 'Tajawal', sans-serif;
+}
 
-/* الـ Navbar الأزرق (بحال الوظيفة ماروك) */
 .main-header {
-    background-color: #003399; /* الأزرق الغامق ديال الخدمة */
+    background-color: #003399; /* Bleu foncé */
     color: white;
     padding: 15px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 4px solid #ffcc00; /* الخط الأصفر التحتاني */
+    border-bottom: 4px solid #ffcc00; /* Ligne jaune en bas */
 }
 
-/* القائمة (الروابط) */
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-}
+.logo { font-size: 24px; font-weight: bold; }
+.logo span { color: #ffcc00; }
 
-/* أيقونات السوشيال والبحث */
-.nav-actions {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-.icon-btn { background: #002266; color: white; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
-
-/* تنسيق الـ Sidebar (آخر المستجدات) */
-.news-widget {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-top: 20px;
-}
-.news-title { background: #003399; color: white; padding: 10px; border-radius: 5px; }
+.nav-links { display: flex; gap: 25px; list-style: none; }
+.nav-links a { color: white; text-decoration: none; font-weight: bold; }
