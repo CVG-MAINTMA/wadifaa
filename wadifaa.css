@@ -1,8 +1,86 @@
-body { font-family: Tahoma, sans-serif; background: #eee; margin: 0; }
-.header { background: #004a99; color: #fff; padding: 20px; text-align: center; }
-.navbar { background: #333; padding: 10px; display: flex; justify-content: center; gap: 20px; }
-.navbar a { color: #fff; text-decoration: none; }
-.main-container { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; max-width: 1000px; margin: 20px auto; }
-.job-card { background: #fff; padding: 15px; margin-bottom: 10px; border-bottom: 2px solid #004a99; }
-.job-card h2 { font-size: 18px; margin: 0; }
-#sidebar { background: #fff; padding: 15px; }
+/* 1. التنسيق العام (المظهر البسيط) */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+}
+
+/* 2. الهيدر (Header) */
+.header {
+    background-color: #004a99;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    border-bottom: 5px solid #ffcc00;
+}
+
+/* 3. ناف بار (Navbar) */
+.navbar {
+    background-color: #333;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+.navbar a:hover {
+    background-color: #004a99;
+    border-radius: 4px;
+}
+
+/* 4. الحاوية الرئيسية (Main Container) */
+.main-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* تقسيم 2 لـ 1 */
+    gap: 20px;
+    padding: 0 10px;
+}
+
+/* 5. شكل البطاقة (Job Card) */
+.job-card {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-right: 4px solid #004a99;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.job-card h2 {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+.job-card a {
+    color: #004a99;
+    text-decoration: none;
+}
+
+/* 6. السايدبار (Sidebar) */
+#sidebar {
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#news-list {
+    list-style: none;
+    padding: 0;
+}
+
+#news-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
