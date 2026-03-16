@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة التحكم - إضافة وظيفة</title>
+    <link rel="stylesheet" href="wadifaa.css">
+</head>
+<body>
+    <div class="container">
+        <h1>إضافة وظيفة جديدة</h1>
+        <form id="addJobForm">
+            <input type="text" id="jobTitle" placeholder="عنوان الوظيفة" required><br>
+            <input type="text" id="jobCompany" placeholder="اسم الشركة" required><br>
+            <input type="text" id="jobDate" placeholder="التاريخ (مثلاً: 16 مارس)"><br>
+            <textarea id="jobDesc" placeholder="تفاصيل الوظيفة"></textarea><br>
+            <button type="submit">نشر الوظيفة</button>
+        </form>
+        <div id="status"></div>
+        <a href="index.html">الرجوع للموقع</a>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>
