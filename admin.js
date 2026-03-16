@@ -50,3 +50,18 @@ document.getElementById('addNewsForm').addEventListener('submit', (e) => {
         document.getElementById('addNewsForm').reset();
     });
 });
+document.getElementById('addJobForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const newJobRef = push(ref(db, 'jobs'));
+    set(newJobRef, {
+        id: newJobRef.key,
+        title: document.getElementById('jobTitle').value,
+        company: document.getElementById('jobCompany').value,
+        type: document.getElementById('jobType').value, // هادي هي اللي كتاخد التصنيف
+        description: document.getElementById('jobDesc').value,
+        date: new Date().toLocaleDateString('ar-MA')
+    }).then(() => {
+        alert("تمت الإضافة بنجاح!");
+        document.getElementById('addJobForm').reset();
+    });
+});
