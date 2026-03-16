@@ -5,31 +5,33 @@ const firebaseConfig = { /* حط هنا الإعدادات ديالك */ };
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// 1. جلب المدن
-onValue(ref(db, 'cities'), (s) => {
-    const sel = document.getElementById('citySelect');
-    if (s.val()) {
-        sel.innerHTML = '<option value="">كل المدن</option>' + 
-        Object.values(s.val()).map(c => `<option value="${c.name}">${c.name}</option>`).join('');
-    }
-});
+// قراءة نوع الوظيفة من الرابط (فلترة ديناميكية)
+const urlParams = new URLSearchParams(window.location.search);
+const type = urlParams.get('type');
 
-// 2. جلب آخر خبر
-onValue(ref(db, 'news'), (s) => {
-    if (s.val()) {
-        const news = Object.values(s.val());
-        document.getElementById('latestNews').innerText = news[news.length - 1].text;
+// جلب الوظائف وفلترتها
+onValue(ref(db, 'jobs'), (snapshot) => {
+    const data = snapshot.val();
+    let jobs = data ? Object.entries(data).map(([id, val]) => ({id, ...val})) : [];
+    
+    if (type) {
+        jobs = jobs.filter(j => j.type === type); // تأكد أن الوظائف فـ Firebase عندها خاصية type
     }
-});
-
-// 3. جلب وعرض الوظائف
-onValue(ref(db, 'jobs'), (s) => {
-    const jobs = s.val() ? Object.entries(s.val()).map(([id, val]) => ({id, ...val})) : [];
+    
     document.getElementById('dynamic-jobs').innerHTML = jobs.reverse().map(j => `
         <article class="job-card">
             <h2><a href="details.html?id=${j.id}">${j.title}</a></h2>
-            <p>🏢 ${j.company}</p>
-            <small>📅 ${j.date || ''}</small>
+            <p>🏢 ${j.company} | 📅 ${j.date}</p>
         </article>
     `).join('');
+});
+
+// جلب الأخبار للـ Sidebar
+onValue(ref(db, 'news'), (snapshot) => {
+    const news = snapshot.val();
+    if (news) {
+        document.getElementById('news-list').innerHTML = Object.values(news).slice(-7).reverse().map(n => 
+            `<li>${n.text}</li>`
+        ).join('');
+    }
 });
