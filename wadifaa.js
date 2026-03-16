@@ -46,15 +46,19 @@ const jobsRef = ref(db, 'jobs');
 onValue(jobsRef, (snapshot) => {
     const data = snapshot.val();
     if (data) {
-        // تحويل الـ Object اللي فيه Keys عشوائية إلى Array
-        // هادي هي اللي غتحيد ليك مشكل undefined
-        allJobs = Object.values(data);
+        // 1. كنجيبو القيم من Object ونحولوهم لـ Array
+        let jobsArray = Object.values(data);
+        
+        // 2. هاد السطر هو "السحر": كيقبل الترتيب باش الجديد يولي هو الأول
+        jobsArray.reverse(); 
+        
+        allJobs = jobsArray;
         renderJobs(allJobs);
     } else {
         renderJobs([]);
     }
 }, (error) => {
-    console.error("خطأ في الاتصال بقاعدة البيانات:", error);
+    console.error("خطأ في جلب البيانات:", error);
 });
 
 // 6. نظام البحث (Filter)
