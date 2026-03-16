@@ -79,3 +79,28 @@ if (searchInput) {
         renderJobs(filteredJobs);
     });
 }
+// --- قراءة المدن وتعمير القائمة ---
+const citiesRef = ref(db, 'cities');
+onValue(citiesRef, (snapshot) => {
+    const data = snapshot.val();
+    const citySelect = document.getElementById('citySelect');
+    if (data && citySelect) {
+        let options = '<option value="">كل المدن</option>';
+        Object.values(data).forEach(city => {
+            options += `<option value="${city.name}">${city.name}</option>`;
+        });
+        citySelect.innerHTML = options;
+    }
+});
+
+// --- قراءة آخر خبر ونشره في الشريط ---
+const newsRef = ref(db, 'news');
+onValue(newsRef, (snapshot) => {
+    const data = snapshot.val();
+    const newsContainer = document.getElementById('latestNews');
+    if (data && newsContainer) {
+        const newsArray = Object.values(data);
+        const latestNews = newsArray[newsArray.length - 1]; // جيب آخر خبر تزاد
+        newsContainer.innerText = "📢 " + latestNews.text;
+    }
+});
