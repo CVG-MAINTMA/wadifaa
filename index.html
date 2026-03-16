@@ -13,9 +13,14 @@
         <p>بوابتكم نحو عالم الشغل والمستقبل الرقمي</p>
     </header>
 
+    <div id="latestNews">جاري تحميل آخر الأخبار...</div>
+
     <section class="search-section container">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="ابحث عن وظيفة (مثلاً: تقني)...">
+            <input type="text" id="searchInput" placeholder="ابحث عن وظيفة...">
+            <select id="citySelect">
+                <option value="">كل المدن</option>
+            </select>
             <button class="btn-search">بحث</button>
         </div>
     </section>
@@ -25,6 +30,13 @@
             <h2 class="title-bg">أحدث مباريات التوظيف</h2>
             <div id="dynamic-jobs"></div>
         </section>
+
+        <aside class="sidebar">
+            <div class="news-widget">
+                <h3 class="widget-title">آخر المستجدات</h3>
+                <ul id="news-list"></ul>
+            </div>
+        </aside>
     </main>
 
     <script type="module" src="wadifaa.js"></script>
