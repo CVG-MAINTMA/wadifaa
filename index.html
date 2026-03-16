@@ -2,17 +2,12 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wadifaa MAROC - بوابة التوظيف</title>
+    <title>Wadifaa MAROC</title>
     <link rel="stylesheet" href="wadifaa.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <header class="main-header">
         <div class="logo">Wadifaa <span>MAROC</span></div>
-        
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html">الرئيسية</a></li>
@@ -22,30 +17,16 @@
                 <li><a href="index.html?type=news">أخبار متنوعة</a></li>
             </ul>
         </nav>
-
         <div class="nav-actions">
-            <button class="icon-btn"><i class="fas fa-moon"></i></button>
-            <button class="icon-btn"><i class="fas fa-envelope"></i></button>
-            <button class="icon-btn"><i class="fas fa-search"></i></button>
+            <i class="fas fa-search"></i>
         </div>
     </header>
 
     <div class="container">
-        <main class="main-content">
-            <h2 class="section-title">أحدث مباريات التوظيف</h2>
-            <div id="dynamic-jobs" class="jobs-grid">
-                </div>
-        </main>
-
-        <aside class="sidebar">
-            <div class="news-widget">
-                <h3 class="news-title">آخر المستجدات</h3>
-                <ul id="news-list">
-                    </ul>
-            </div>
-        </aside>
+        <main id="dynamic-jobs" class="jobs-grid"></main>
+        <aside id="news-list" class="sidebar"></aside>
     </div>
-
+    
     <script type="module" src="wadifaa.js"></script>
 </body>
 </html>
