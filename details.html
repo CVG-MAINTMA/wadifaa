@@ -3,46 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تفاصيل الوظيفة - Wadifaa</title>
+    <title>تفاصيل الوظيفة - Wadifaa MAROC</title>
     <link rel="stylesheet" href="wadifaa.css">
-    <style>
-        .details-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .job-header { border-bottom: 2px solid #f0f0f0; padding-bottom: 20px; margin-bottom: 20px; }
-        .job-header h1 { color: #0056b3; margin: 0; }
-        .company-info { font-size: 1.2rem; color: #666; margin-top: 10px; }
-        .job-meta { display: flex; gap: 20px; color: #999; font-size: 0.9rem; margin-top: 10px; }
-        .job-description { line-height: 1.8; color: #333; white-space: pre-line; }
-        .back-btn { display: inline-block; margin-top: 30px; padding: 10px 20px; background: #0056b3; color: white; text-decoration: none; border-radius: 5px; }
-        .back-btn:hover { background: #003d82; }
-    </style>
 </head>
 <body>
 
-    <div class="details-container">
-        <div id="loading">جاري تحميل التفاصيل...</div>
-        
-        <div id="job-content" style="display: none;">
-            <div class="job-header">
-                <h1 id="job-title">---</h1>
-                <div class="company-info" id="job-company">---</div>
-                <div class="job-meta">
-                    <span id="job-date">---</span>
-                    <span>📍 المغرب</span>
-                </div>
+    <header class="main-header">
+        <div class="logo">Wadifaa <span>MAROC</span></div>
+        <nav><ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+        </ul></nav>
+    </header>
+
+    <div class="container details-container">
+        <article class="job-detail-card">
+            <h1 id="job-title">جاري تحميل البيانات...</h1>
+            <div class="job-meta">
+                <span id="job-company">🏢 الشركة: --</span>
+                <span id="job-date">📅 التاريخ: --</span>
             </div>
-
-            <div class="job-description" id="job-description">
+            <hr>
+            <div id="job-desc" class="job-content">
                 </div>
-
-            <a href="index.html" class="back-btn">← العودة للرئيسية</a>
-        </div>
+            <div class="actions">
+                <a href="index.html" class="btn-back">⬅ العودة للرئيسية</a>
+            </div>
+        </article>
     </div>
 
     <script type="module" src="details.js"></script>
