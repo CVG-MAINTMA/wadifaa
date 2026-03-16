@@ -1,22 +1,48 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>لوحة التحكم - إضافة وظيفة</title>
+    <title>لوحة التحكم - إضافة البيانات</title>
     <link rel="stylesheet" href="wadifaa.css">
 </head>
 <body>
     <div class="container">
-        <h1>إضافة وظيفة جديدة</h1>
-        <form id="addJobForm">
-            <input type="text" id="jobTitle" placeholder="عنوان الوظيفة" required><br>
-            <input type="text" id="jobCompany" placeholder="اسم الشركة" required><br>
-            <input type="text" id="jobDate" placeholder="التاريخ (مثلاً: 16 مارس)"><br>
-            <textarea id="jobDesc" placeholder="تفاصيل الوظيفة"></textarea><br>
-            <button type="submit">نشر الوظيفة</button>
-        </form>
-        <div id="status"></div>
-        <a href="index.html">الرجوع للموقع</a>
+        <h1>لوحة التحكم</h1>
+        
+        <section>
+            <h3>إضافة وظيفة جديدة</h3>
+            <form id="addJobForm">
+                <input type="text" id="jobTitle" placeholder="عنوان الوظيفة" required><br>
+                <input type="text" id="jobCompany" placeholder="اسم الشركة" required><br>
+                <input type="text" id="jobDate" placeholder="التاريخ (مثلاً: 16 مارس)"><br>
+                <textarea id="jobDesc" placeholder="تفاصيل الوظيفة"></textarea><br>
+                <button type="submit">نشر الوظيفة</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section>
+            <h3>إضافة مدينة جديدة</h3>
+            <form id="addCityForm">
+                <input type="text" id="cityName" placeholder="اسم المدينة" required>
+                <button type="submit">إضافة المدينة</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section>
+            <h3>إضافة خبر جديد</h3>
+            <form id="addNewsForm">
+                <input type="text" id="newsText" placeholder="نص الخبر" required>
+                <button type="submit">نشر الخبر</button>
+            </form>
+        </section>
+
+        <div id="status" style="margin-top: 20px; font-weight: bold;"></div>
+        <br>
+        <a href="index.html">الرجوع للموقع الرئيسي</a>
     </div>
 
     <script type="module" src="admin.js"></script>
