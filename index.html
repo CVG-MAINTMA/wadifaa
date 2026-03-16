@@ -2,31 +2,20 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Wadifaa MAROC</title>
+    <title>Wadifaa - بوابة التوظيف</title>
     <link rel="stylesheet" href="wadifaa.css">
 </head>
 <body>
-    <header class="main-header">
-        <div class="logo">Wadifaa <span>MAROC</span></div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="index.html?type=gov">وظائف حكومية</a></li>
-                <li><a href="index.html?type=private">وظائف خاصة</a></li>
-                <li><a href="index.html?type=exams">نماذج مباريات</a></li>
-                <li><a href="index.html?type=news">أخبار متنوعة</a></li>
-            </ul>
-        </nav>
-        <div class="nav-actions">
-            <i class="fas fa-search"></i>
-        </div>
-    </header>
-
-    <div class="container">
-        <main id="dynamic-jobs" class="jobs-grid"></main>
-        <aside id="news-list" class="sidebar"></aside>
+    <header class="header"><h1>Wadifaa</h1></header>
+    <nav class="navbar">
+        <a href="?type=gov">وظائف حكومية</a>
+        <a href="?type=private">وظائف خاصة</a>
+        <a href="?type=exams">مباريات</a>
+    </nav>
+    <div class="main-container">
+        <main id="jobs-container"></main>
+        <aside id="sidebar"><h3>آخر الأخبار</h3><ul id="news-list"></ul></aside>
     </div>
-    
-    <script type="module" src="wadifaa.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
