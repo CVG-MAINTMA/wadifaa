@@ -1,71 +1,66 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-// 1. إعدادات Firebase (حط الإعدادات ديالك هنا)
+// 1. الإعدادات (تأكد من وضع الإعدادات ديالك هنا)
 const firebaseConfig = {
-  apiKey: "AIzaSyDEXWQCwJ7JSIVHnjFzj3F9QYdySzh4lfE",
-  authDomain: "waddifa-98a56.firebaseapp.com",
-  databaseURL: "https://waddifa-98a56-default-rtdb.firebaseio.com",
-  projectId: "waddifa-98a56",
-  storageBucket: "waddifa-98a56.firebasestorage.app",
-  messagingSenderId: "528638398956",
-  appId: "1:528638398956:web:a4acac5a84f8901d9970c9"
+    apiKey: "AIzaSyDEXWQCwJ7JSIVHnjFzj3F9QYdySzh4lfE",
+    authDomain: "waddifa-98a56.firebaseapp.com",
+    databaseURL: "https://waddifa-98a56-default-rtdb.firebaseio.com",
+    projectId: "waddifa-98a56",
+    storageBucket: "waddifa-98a56.firebasestorage.app",
+    messagingSenderId: "528638398956",
+    appId: "1:528638398956:web:a4acac5a84f8901d9970c9"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// 2. جلب وتحديث الوظائف (ديناميكي)
-onValue(ref(db, 'jobs'), (snapshot) => {
-    const data = snapshot.val();
-    const container = document.getElementById('dynamic-jobs');
-    if (!container) return;
-
-    if (!data) {
-        container.innerHTML = '<p>لا توجد وظائف حالياً.</p>';
-        return;
-    }
-
-    // تحويل البيانات لـ Array وترتيبها من الأحدث للأقدم
-    let jobs = Object.entries(data).map(([id, val]) => ({ id, ...val }));
-    jobs.reverse();
-
-    // فلترة حسب الرابط (مثلاً: index.html?type=gov)
+// 2. دالة جلب وعرض البيانات (مركزية)
+function initApp() {
+    // قراءة النوع من الرابط (URL Parameters)
     const urlParams = new URLSearchParams(window.location.search);
-    const type = urlParams.get('type');
-    if (type) {
-        jobs = jobs.filter(j => j.type === type);
-    }
+    const type = urlParams.get('type'); // كياخد gov, private, الخ...
 
-    container.innerHTML = jobs.map(job => `
-        <article class="job-card">
-            <h2><a href="details.html?id=${job.id}">${job.title}</a></h2>
-            <p>${job.description || 'لا يوجد وصف متاح.'}</p>
-            <div class="job-meta">
-                <span>🏢 ${job.company}</span>
-                <span>📅 ${job.date}</span>
-                <span class="tag">${job.type === 'gov' ? 'حكومي' : job.type === 'private' ? 'خاص' : 'مباراة'}</span>
-            </div>
-        </article>
-    `).join('');
-});
+    const jobsRef = ref(db, 'jobs');
+    
+    onValue(jobsRef, (snapshot) => {
+        const data = snapshot.val();
+        if (!data) return;
 
-// 3. جلب الأخبار (Sidebar)
-onValue(ref(db, 'news'), (snapshot) => {
-    const data = snapshot.val();
-    const newsList = document.getElementById('news-list');
-    if (data && newsList) {
-        newsList.innerHTML = Object.values(data).slice(-7).reverse().map(n => 
-            `<li><i class="fas fa-bullhorn"></i> ${n.text}</li>`
-        ).join('');
-    }
-});
+        // تحويل البيانات لمصفوفة
+        let jobs = Object.entries(data).map(([id, val]) => ({ id, ...val }));
+        
+        // ذكاء الفلترة: إلا كان نوع محدد، كنفلترو، إلا ما كانش، كنعرضو كلشي
+        let filteredJobs = type ? jobs.filter(j => j.type === type) : jobs;
 
-// 4. خاصية البحث (اختياري)
-const searchInput = document.getElementById('searchInput');
-if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        // تقدر تزيد هنا كود الفلترة المباشر حسب العنوان
+        // عرض النتائج في الصفحة
+        const container = document.getElementById('dynamic-jobs');
+        if (container) {
+            container.innerHTML = filteredJobs.reverse().map(job => `
+                <article class="job-card">
+                    <h2><a href="details.html?id=${job.id}">${job.title}</a></h2>
+                    <p class="job-desc">${job.company || ''}</p>
+                    <div class="job-meta">
+                        <span>📅 ${job.date || '2026'}</span>
+                        <span class="tag">${job.type || 'عام'}</span>
+                    </div>
+                </article>
+            `).join('');
+        }
+    });
+
+    // 3. جلب الأخبار (إضافي للـ Sidebar)
+    const newsRef = ref(db, 'news');
+    onValue(newsRef, (snapshot) => {
+        const news = snapshot.val();
+        const newsList = document.getElementById('news-list');
+        if (news && newsList) {
+            newsList.innerHTML = Object.values(news).slice(-5).reverse().map(n => 
+                `<li>${n.text}</li>`
+            ).join('');
+        }
     });
 }
+
+// تشغيل الدالة
+initApp();
