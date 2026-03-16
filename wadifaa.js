@@ -1,8 +1,8 @@
-// 1. استيراد المكتبات الضرورية من Firebase (نسخة الـ CDN للمتصفح)
+// 1. استيراد المكتبات من Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-// 2. الإعدادات الخاصة بك (Firebase Config)
+// 2. إعدادات Firebase الخاصة بك
 const firebaseConfig = {
   apiKey: "AIzaSyDEXWQCwJ7JSIVHnjFzj3F9QYdySzh4lfE",
   authDomain: "waddifa-98a56.firebaseapp.com",
@@ -18,10 +18,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// متغيّر عام لتخزين الوظائف من أجل عملية البحث
-let allJobs = [];
+let allJobs = []; // مصفوفة لتخزين الوظائف للبحث
 
-// 4. دالة عرض الوظائف في الصفحة
+// 4. دالة عرض الوظائف في HTML
 function renderJobs(jobs) {
     const jobsContainer = document.getElementById('dynamic-jobs');
     
@@ -30,39 +29,45 @@ function renderJobs(jobs) {
         return;
     }
 
-    // هنا كنأكدوا بلي كنستعملوا الأسامي اللي عندك في Firebase (title, company, date)
     jobsContainer.innerHTML = jobs.map(job => `
         <article class="job-card">
-            <h2><a href="details.html?id=${job.id}">${job.title || 'عنوان غير متوفر'}</a></h2>
-            <p class="company-name">${job.company || 'شركة غير معروفة'}</p>
+            <h2><a href="details.html?id=${job.id}">${job.title || 'بدون عنوان'}</a></h2>
+            <p class="company-name">${job.company || 'شركة غير محددة'}</p>
             <span class="job-date">${job.date || ''}</span>
         </article>
     `).join('');
 }
 
-// 5. جلب البيانات من Firebase (التركيز على مسار 'jobs')
+// 5. جلب البيانات وترتيبها (الجديد أولاً)
 const jobsRef = ref(db, 'jobs'); 
 
 onValue(jobsRef, (snapshot) => {
     const data = snapshot.val();
     if (data) {
-        // 1. كنجيبو الداتا
-        let jobsArray = Object.values(data);
+        // الحصول على جميع المفاتيح (IDs)
+        const keys = Object.keys(data);
         
-        // 2. كنقلبو الترتيب باش الجديد (اللي لتحت في Firebase) يولي هو الفوقاني
-        jobsArray.reverse(); 
+        // ترتيب المفاتيح تنازلياً (Z to A) لأن IDs الفايربيس مرتبة زمنياً
+        keys.sort().reverse(); 
 
-        // 3. كنخزنوها في المتغير العام للبحث
-        allJobs = jobsArray;
+        // بناء قائمة الوظائف بناءً على الترتيب الجديد
+        const sortedJobs = keys.map(key => {
+            return {
+                id: key,
+                ...data[key]
+            };
+        });
 
-        // 4. كنعرضوها
+        allJobs = sortedJobs;
         renderJobs(allJobs);
     } else {
         renderJobs([]);
     }
+}, (error) => {
+    console.error("خطأ في الاتصال:", error);
 });
 
-// 6. نظام البحث (Filter)
+// 6. تفعيل خانة البحث
 const searchInput = document.getElementById('searchInput');
 if (searchInput) {
     searchInput.addEventListener('input', (e) => {
