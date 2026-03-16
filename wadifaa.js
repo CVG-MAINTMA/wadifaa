@@ -1,8 +1,8 @@
-// 1. استيراد المكتبات الضرورية من Firebase (نسخة الـ Web المباشرة)
+// 1. استيراد المكتبات الضرورية من Firebase (نسخة الـ CDN للمتصفح)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-// 2. الإعدادات ديالك (اللي صيفطتي ليا)
+// 2. الإعدادات الخاصة بك (Firebase Config)
 const firebaseConfig = {
   apiKey: "AIzaSyDEXWQCwJ7JSIVHnjFzj3F9QYdySzh4lfE",
   authDomain: "waddifa-98a56.firebaseapp.com",
@@ -18,45 +18,46 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// متغيّر باش نحتفظوا بالداتا للبحث (Search Filter)
+// متغيّر عام لتخزين الوظائف من أجل عملية البحث
 let allJobs = [];
 
-// 4. دالة عرض الوظائف (Render)
+// 4. دالة عرض الوظائف في الصفحة
 function renderJobs(jobs) {
     const jobsContainer = document.getElementById('dynamic-jobs');
     
     if (!jobs || jobs.length === 0) {
-        jobsContainer.innerHTML = '<p style="text-align:center; padding:20px;">للأسف، لم نجد وظائف حالياً.</p>';
+        jobsContainer.innerHTML = '<p style="text-align:center; padding:20px;">لا توجد وظائف حالياً.</p>';
         return;
     }
 
+    // هنا كنأكدوا بلي كنستعملوا الأسامي اللي عندك في Firebase (title, company, date)
     jobsContainer.innerHTML = jobs.map(job => `
         <article class="job-card">
-            <h2><a href="details.html?id=${job.id}">${job.title}</a></h2>
-            <p class="company-name">${job.company}</p>
+            <h2><a href="details.html?id=${job.id}">${job.title || 'عنوان غير متوفر'}</a></h2>
+            <p class="company-name">${job.company || 'شركة غير معروفة'}</p>
             <span class="job-date">${job.date || ''}</span>
         </article>
     `).join('');
 }
 
-// 5. جلب البيانات من Firebase Realtime Database
-// غادي نقراو من الجذر '/' أو من 'jobs' على حسب كيفاش حطيتي الداتا
-const jobsRef = ref(db, '/'); 
+// 5. جلب البيانات من Firebase (التركيز على مسار 'jobs')
+const jobsRef = ref(db, 'jobs'); 
 
 onValue(jobsRef, (snapshot) => {
     const data = snapshot.val();
     if (data) {
-        // تحويل الـ Object لـ Array إلا كانت الداتا مفرقة
-        allJobs = Array.isArray(data) ? data : Object.values(data);
+        // تحويل الـ Object اللي فيه Keys عشوائية إلى Array
+        // هادي هي اللي غتحيد ليك مشكل undefined
+        allJobs = Object.values(data);
         renderJobs(allJobs);
     } else {
         renderJobs([]);
     }
 }, (error) => {
-    console.error("خطأ في جلب البيانات:", error);
+    console.error("خطأ في الاتصال بقاعدة البيانات:", error);
 });
 
-// 6. خاصية البحث (Search Filter)
+// 6. نظام البحث (Filter)
 const searchInput = document.getElementById('searchInput');
 if (searchInput) {
     searchInput.addEventListener('input', (e) => {
