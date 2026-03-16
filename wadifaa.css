@@ -1,43 +1,38 @@
-body {
-    font-family: 'Tajawal', sans-serif;
-}
+/* الكارطات ديال الوظائف - الشكل الاحترافي */
+.jobs-grid { display: grid; gap: 20px; }
 
-.main-header {
-    background-color: #003399; /* Bleu foncé */
-    color: white;
-    padding: 15px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 4px solid #ffcc00; /* Ligne jaune en bas */
-}
-
-.logo { font-size: 24px; font-weight: bold; }
-.logo span { color: #ffcc00; }
-
-.nav-links { display: flex; gap: 25px; list-style: none; }
-.nav-links a { color: white; text-decoration: none; font-weight: bold; }
-/* الكارطة ديال الوظيفة */
 .job-card {
     background: white;
-    border-radius: 8px;
     padding: 20px;
-    margin-bottom: 20px;
-    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    border-right: 5px solid #003399; /* خط جانبي أزرق */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: 0.3s;
 }
-.job-card:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 
-/* العنوان */
-.job-card h2 { color: #003399; font-size: 1.2rem; margin-bottom: 10px; }
+.job-card h2 a { text-decoration: none; color: #003399; font-weight: bold; }
 
-/* المعلومات اللي لتحت (التاريخ، عدد المشاهدات) */
 .job-meta {
     display: flex;
     gap: 15px;
-    color: #777;
-    font-size: 0.9rem;
     margin-top: 15px;
-    border-top: 1px solid #eee;
-    padding-top: 10px;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+/* التاج الملون (Tag) - هنا فين كيبان الاحتراف */
+.tag {
+    background: #eef2ff;
+    color: #003399;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* قائمة الأخبار فـ الـ Sidebar */
+#news-list { list-style: none; padding: 0; }
+#news-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
 }
